@@ -1,7 +1,6 @@
 /* eslint-disable */
 // const passport = require('passport');
 const express = require('express');
-const arrayNames = require('../database/seeds/arrayNames');
 const eachMPP = require('../database/models/eachMPP');
 const hansard = require('../database/models/Hansard');
 const billVotes = require('../database/models/billVotes');
@@ -9,22 +8,15 @@ const bills = require('../database/models/Bills');
 const requireLogin = require('../middlewares/requireLogin');
 
 module.exports = app => {
-  let billsRouter = express.Router();
-  billsRouter = require('../database/scraping/Bills')(billsRouter);
+  const billsRouter = require('../database/scraping/Bills')
+  const eachmppRouter = require('../database/scraping/eachMPP')
+  const mppUrlRouter = require('../database/scraping/MPPurls')
+  hansardRouter = require('../database/scraping/Hansard')
 
-  let eachmppRouter = express.Router();
-  eachmppRouter = require('../database/scraping/eachMPP')(eachmppRouter);
-
-  let mppUrlRouter = express.Router();
-  mppUrlRouter = require('../database/scraping/MPPurls')(mppUrlRouter);
-
-  let hansardRouter = express.Router();
-  hansardRouter = require('../database/scraping/Hansard')(hansardRouter);
-
-  app.use('/bills', billsRouter);
-  app.use('/eachmpp', eachmppRouter);
-  app.use('/mppUrl', mppUrlRouter);
-  app.use('/hansard', hansardRouter);
+  // app.use('/bills', billsRouter);
+  //app.use('/eachmpp', eachmppRouter);
+  // app.use('/mppUrl', mppUrlRouter);
+  // app.use('/hansard', hansardRouter);
   // //this finds MPP from search bar, direct link
   app.use('/api/mppName/:name', requireLogin, (req, res) => {
     eachMPP
