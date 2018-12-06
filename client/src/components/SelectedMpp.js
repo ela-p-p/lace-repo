@@ -163,7 +163,7 @@ class PaperSheet extends Component {
             ridingMap={ridingMap}
           />
           {/* <FollowButton userId={userId} followingId={followingId} /> */}
-          <SMData mppLockup={mppLockup} facebook={facebook} twitter={twitter} />
+          <SMData mppLockup={mppLockup} facebook={facebook} twitter={twitter} userId={userId} followingId={followingId}/>
         </Paper>
       </div>
     );

@@ -128,6 +128,18 @@ module.exports = app => {
         console.error(err);
         res.status(422).json(err);
       });
+
+  })
+  app.get('/api/events/:followingId', (req, res) => {
+    events
+      .find({followingId: req.params.followingId})
+      .then(event => {
+        res.json(event);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(422).json(err);
+      });
   });
   // remove MPP/followingId from User
   app.put('/api/unfollow/:userId&:followingId', (req, res) => {

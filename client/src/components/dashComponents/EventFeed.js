@@ -60,8 +60,8 @@ class EventFeed extends Component {
     super(props);
     this.state = {
       eventDetails: [],
-      followingId: '',
-      userId: '',
+      // followingId: '',
+      // userId: '',
       eventName: '',
       eventSpeaker: '',
       eventDate: '',
@@ -91,7 +91,8 @@ class EventFeed extends Component {
     event.preventDefault();
     console.log('submitted!!!');
     const eventInfo = {
-      userId: this.state.userId,
+      userId: userId,
+      followingId: followingId,
       eventName: this.state.eventName,
       eventSpeaker: this.state.eventSpeaker,
       eventDate: this.state.eventDate,
@@ -112,11 +113,72 @@ class EventFeed extends Component {
     document.getElementById('standard-name-eventLocation').value = '';
     document.getElementById('datetime-local').value = '';
   };
-
+  displayEvents() {
+    axios
+      .get(`/api/events/${this.props.followingId}`)
+      .then(res => {
+        console.log('me ' + JSON.stringify(res.data) + 'me ')
+        this.setState({
+          eventDetails: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
   //
   componentDidMount() {
-    this.getCurrentUser();
-    this.displayEvents();
+    this.displayEvents()
+  };
+
+  render() {
+    const { classes, userId, followingId  } = this.props;
+    return (
+      <article className="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
+        <React.Fragment>
+          <CssBaseline />
+          <main>
+            <form className={classes.container} noValidate autoComplete="off">
+              <TextField
+                id="standard-name-eventName"
+                label="Event Name"
+                className={classes.textField}
+                value={this.state.eventName}
+                onChange={this.handleChange('eventName')}
+                margin="normal"
+              />
+              <TextField
+                id="standard-name-eventSpeaker"
+                label="Event Speaker"
+                className={classes.textField}
+                value={this.state.eventSpeaker}
+                onChange={this.handleChange('eventSpeaker')}
+                margin="normal"
+              />
+              <TextField
+                id="standard-name-eventLocation"
+                label="Event Location"
+                className={classes.textField}
+                value={this.state.eventLocation}
+                onChange={this.handleChange('eventLocation')}
+              />
+              <TextField
+                id="datetime-local"
+                label="Date"
+                type="date"
+                defaultValue="2017-05-24"
+                value={this.state.eventDate}
+                onChange={this.handleChange('eventDate')}
+                className={classes.textField}
+                InputLabelProps={{
+                  shrink: true
+                }}
+              />
+            </form>
+            <button onClick={event => this.formSubmission(event, userId, followingId)} >
+              Submit
+              </button>
+          </main>
+        </React.Fragment>
+      </article>
   }
 
   render() {
@@ -211,7 +273,6 @@ class EventFeed extends Component {
     );
   }
 }
-
 EventFeed.propTypes = {
   classes: PropTypes.object.isRequired
 };
