@@ -131,58 +131,6 @@ class EventFeed extends Component {
 
   render() {
     const { classes, userId, followingId  } = this.props;
-    return (
-      <article className="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
-        <React.Fragment>
-          <CssBaseline />
-          <main>
-            <form className={classes.container} noValidate autoComplete="off">
-              <TextField
-                id="standard-name-eventName"
-                label="Event Name"
-                className={classes.textField}
-                value={this.state.eventName}
-                onChange={this.handleChange('eventName')}
-                margin="normal"
-              />
-              <TextField
-                id="standard-name-eventSpeaker"
-                label="Event Speaker"
-                className={classes.textField}
-                value={this.state.eventSpeaker}
-                onChange={this.handleChange('eventSpeaker')}
-                margin="normal"
-              />
-              <TextField
-                id="standard-name-eventLocation"
-                label="Event Location"
-                className={classes.textField}
-                value={this.state.eventLocation}
-                onChange={this.handleChange('eventLocation')}
-              />
-              <TextField
-                id="datetime-local"
-                label="Date"
-                type="date"
-                defaultValue="2017-05-24"
-                value={this.state.eventDate}
-                onChange={this.handleChange('eventDate')}
-                className={classes.textField}
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-            </form>
-            <button onClick={event => this.formSubmission(event, userId, followingId)} >
-              Submit
-              </button>
-          </main>
-        </React.Fragment>
-      </article>
-  }
-
-  render() {
-    const { classes } = this.props;
     const { eventDetails } = this.state;
     return (
       <div className={classes.eventLayout}>
@@ -228,7 +176,7 @@ class EventFeed extends Component {
                 />
               </form>
               <Button
-                onClick={event => this.formSubmission(event)}
+                onClick={event => this.formSubmission(event, userId, followingId)} 
                 className={classes.button}
               >
                 Submit
