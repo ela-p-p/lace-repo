@@ -22,6 +22,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Button from '@material-ui/core/Button';
+//  ok
 
 const styles = theme => ({
   root: {
@@ -181,7 +182,6 @@ class EventFeed extends Component {
                 <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                   <Typography
                     className={classes.heading}
-                    // variant="h5"
                     component="h3"
                   >
                     {event.eventName}
