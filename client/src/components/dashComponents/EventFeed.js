@@ -69,6 +69,7 @@ class EventFeed extends Component {
     };
   }
 
+<<<<<<< HEAD
   // getCurrentUser = () => {
   //   axios
   //     .get('/api/currentUser')
@@ -79,6 +80,8 @@ class EventFeed extends Component {
   //     .catch(err => console.log(err));
   // };
 
+=======
+>>>>>>> 165c4e8a40eaa09a10cfeb9edd6fb2b2f8eb9f1d
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
@@ -125,7 +128,7 @@ class EventFeed extends Component {
 
   //
   componentDidMount() {
-    this.getCurrentUser();
+    // this.getCurrentUser();
     this.displayEvents();
   }
 

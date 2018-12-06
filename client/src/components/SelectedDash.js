@@ -108,7 +108,7 @@ export default class SelectedMPP extends Component {
   // };
   //
   componentDidMount() {
-    this.getCurrentUser();
+    // this.getCurrentUser();
     this.mppSearch();
     setTimeout(() => {
       this.getTwitter();

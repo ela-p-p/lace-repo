@@ -110,7 +110,7 @@ class PaperSheet extends Component {
   // -- end of helpers
   // life cycle
   componentDidMount() {
-    this.getCurrentUser();
+    // this.getCurrentUser();
     this.mppSearch();
     setTimeout(() => {
       this.getTwitter();
