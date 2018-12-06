@@ -69,16 +69,6 @@ class EventFeed extends Component {
     };
   }
 
-  getCurrentUser = () => {
-    axios
-      .get('/api/currentUser')
-      .then(res => {
-        // console.log(res.data)
-        this.setState({ userId: res.data._id });
-      })
-      .catch(err => console.log(err));
-  };
-
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
