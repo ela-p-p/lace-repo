@@ -52,7 +52,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap'
   },
-  eventList: { width: '60rem' },
+  eventList: { width: '55rem' },
   eventForm: {}
 });
 
@@ -116,7 +116,7 @@ class EventFeed extends Component {
 
   //
   componentDidMount() {
-    this.getCurrentUser();
+    // this.getCurrentUser();
     this.displayEvents();
   }
 
@@ -195,7 +195,7 @@ class EventFeed extends Component {
 
                   <Typography component="p" className="pa2">
                     <strong>Date: </strong>
-                    {event.eventDate}
+                    {event.eventDate.substring(0, 10)}
                   </Typography>
 
                   <Typography component="p" className="pa2">
