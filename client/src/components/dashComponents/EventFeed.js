@@ -40,8 +40,8 @@ class EventFeed extends Component {
     super(props);
     this.state = {
       eventDetails: [],
-      followingId: '',
-      userId: '',
+      // followingId: '',
+      // userId: '',
       eventName: '',
       eventSpeaker: '',
       eventDate: '',
@@ -49,39 +49,17 @@ class EventFeed extends Component {
     };
   }
 
-  getCurrentUser = () => {
-    axios.get('/api/currentUser')
-      .then(res => {
-        // console.log(res.data)
-        this.setState({ userId: res.data._id })
-      })
-      .catch(err => console.log(err));
-  };
-
   handleChange = name => event => {
     this.setState({
       [name]: event.target.value
     });
   };
-
-  displayEvents() {
-    axios
-      .get('/api/events/', {
-      })
-      .then(res => {
-        this.setState({
-          eventDetails: res.data
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
-
-  formSubmission = (event) => {
-    event.preventDefault();
-    console.log('submitted!!!');
+  
+  formSubmission = (event, userId, followingId) => {
+    event.preventDefault();    
     const eventInfo = {
-      userId: this.state.userId,
+      userId: userId,
+      followingId: followingId,
       eventName: this.state.eventName,
       eventSpeaker: this.state.eventSpeaker,
       eventDate: this.state.eventDate,
@@ -100,15 +78,24 @@ class EventFeed extends Component {
     document.getElementById('standard-name-eventLocation').value = '';
     document.getElementById('datetime-local').value = '';
   };
-
+  displayEvents() {
+    axios
+      .get(`/api/events/${this.props.followingId}`)
+      .then(res => {
+        console.log('me ' + JSON.stringify(res.data) + 'me ')
+        this.setState({
+          eventDetails: res.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
   //
   componentDidMount() {
-    this.getCurrentUser();
-    // this.displayEvents()
+    this.displayEvents()
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, userId, followingId  } = this.props;
     return (
       <article className="mw5 center bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
         <React.Fragment>
@@ -151,7 +138,7 @@ class EventFeed extends Component {
                 }}
               />
             </form>
-            <button onClick={event => this.formSubmission(event)} >
+            <button onClick={event => this.formSubmission(event, userId, followingId)} >
               Submit
               </button>
           </main>
@@ -160,7 +147,6 @@ class EventFeed extends Component {
     );
   }
 }
-
 EventFeed.propTypes = {
   classes: PropTypes.object.isRequired
 };

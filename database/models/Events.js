@@ -21,8 +21,8 @@ const eventsSchema = new Schema({
     type: String,
     required: true,
   },
-  followingId: { type: Schema.Types.ObjectId, ref: 'eachmpps' },
-  userId: { type: Schema.Types.ObjectId, ref: 'users' },
+  followingId: String,
+  userId: String,
 });
 
 // This creates our model from the above schema, using mongoose's model method

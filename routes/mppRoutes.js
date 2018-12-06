@@ -28,18 +28,7 @@ module.exports = app => {
         res.status(422).json(err);
       });
   });
-  app.get('/api/events/', requireLogin, (req, res) => {
-    events
-      .find({})
-      .populate(userId)
-      .then(event => {
-        res.json(event);
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(422).json(err);
-      });
-  });
+  
   // //this finds speeches by name typed in Search Bar, pulled from URL
   app.use('/api/hansard/:name', requireLogin, (req, res) => {
     hansard
@@ -119,6 +108,17 @@ module.exports = app => {
         res.status(422).json(err);
       });
   })
+  app.get('/api/events/:followingId', (req, res) => {
+    events
+      .find({followingId: req.params.followingId})
+      .then(event => {
+        res.json(event);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(422).json(err);
+      });
+  });
   // remove MPP/followingId from User
   app.put('/api/unfollow/:userId&:followingId', (req, res) => {
     users.updateOne({ _id: req.params.userId }, { $pull: { followingId: req.params.followingId } })
