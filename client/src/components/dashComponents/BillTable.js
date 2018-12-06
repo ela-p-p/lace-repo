@@ -3,7 +3,6 @@ import React from 'react';
 import { Table } from 'react-bootstrap';
 
 function BillTable(props) {
-  console.log(props)
   const table = (
     props.specificBills.map((rows) =>
       <div
@@ -35,31 +34,5 @@ function BillTable(props) {
     <div>{table}</div>
   );
 }
-
-
-// const BillTable = props => (
-//   <div>
-//     {/* {props.map(rows)} */}
-//     <a target='_blank' rel="noopener noreferrer" key={props._id} href={props.URL}>{props.title}</a>
-//     <Table responsive bordered condensed className="f6 black-70" >
-//       <thead>
-//         <tr>
-//           <th>Date</th>
-//           <th>Bill Stage</th>
-//           <th>Activity</th>
-//           <th>Vote</th>
-//         </tr>
-//       </thead>
-//       <tbody>
-//         <tr>
-//           <td>{props.date}</td>
-//           <td>{props.stage}</td>
-//           <td>{props.activity}</td>
-//           <td>{props.votes}</td>
-//         </tr>
-//       </tbody>
-//     </Table>
-//   </div>
-// );
 
 export default BillTable;

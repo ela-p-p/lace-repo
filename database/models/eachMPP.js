@@ -18,6 +18,10 @@ const eachmppSchema = new Schema({
     required: true,
     text: true,
   },
+  lastName: {
+    type: String,
+    required: true    
+  },
   photo: {
     type: String,
     required: true,

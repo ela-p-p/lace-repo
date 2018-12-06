@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const billVotesSchema = new Schema({
   Member: {
     type: String,
-    required: true,
     text: true,
   },
   bill2: {

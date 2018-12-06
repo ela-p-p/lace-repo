@@ -5,10 +5,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from './actions';
 // import compoenents
-// import Navbar from './components/Navbar';
-import Landing from './components/Landing';
+// import AuthButton from './components/AuthButton';
+// import Landing from './components/Landing';
 import SelectedDash from './components/SelectedDash';
-// import GenDash from './components/GenDash';
 import UserDash from './components/UserDash';
 import fakeData from './fakedata';
 import Logo from './components/Logo';
@@ -16,9 +15,11 @@ import Footer from './components/Footer';
 // import Loader from './components/Loader';
 import Appbar from './components/Appbar';
 import Feed from './components/Feed';
+import SelectedMpp from './components/SelectedMpp';
 // import Login from './components/Login';
 // import Signup from './components/Signup';
 // import listMPPS from './components/AllMPPS';
+// end of inports
 
 // styling
 // import SearchBar from './components/SearchBar';
@@ -39,19 +40,17 @@ class App extends Component {
         <BrowserRouter>
           <div className="acCointainer">
             <Appbar />
-            {/* <Navbar id="navBar" /> */}
-            <Route exact path="/" component={Logo} />
-            {/* <Route exact path="/landing" component={Landing} /> */}
-            <Route exact path="/landing" component={Feed} />
-            {/* <Route exact path="/landing" component={Dashboard} /> */}
-            <Route
-              exact
-              path="/user"
-              render={props =>
-                fakeData.map(follow => <UserDash {...props} item={follow} />)
-              }
-            />
-            <Route path="/mpp/:mppName" component={SelectedDash} />
+            {/* <AuthButton id="navBar" /> */}
+            <div className="mainContent ">
+              <Route exact path="/" component={Logo} />
+              {/* <Route exact path="/landing" component={Landing} /> */}
+              <Route exact path="/landing" component={Feed} />
+              {/* <Route exact path="/landing" component={Dashboard} /> */}
+              <Route exact path="/user" component={UserDash} />
+              {/* <Route path="/mpp/:mppName" component={SelectedDash} /> */}
+              <Route path="/mpp/:mppName" component={SelectedMpp} />
+              {/* <Route exact path="/dev-ca" component={SelectedMpp} /> */}
+            </div>
             <Footer />
           </div>
         </BrowserRouter>

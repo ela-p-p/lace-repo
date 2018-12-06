@@ -85,11 +85,3 @@
 //  let date = post.data.substring(findComma +1, findYear+4)
 //     console.log(date)
 //     })
-
-//     const names = array.map((post) => {
-//     const {title, URL, data} = post
-//     let findComma = post.data.indexOf(',')
-//     let findYear = post.data.indexOf('2018');
-//  let date = post.data.substring(findComma +1, findYear+4)
-//     console.log(date)
-//     })

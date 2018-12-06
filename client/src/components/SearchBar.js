@@ -14,8 +14,8 @@ class SearchBar extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('search key pressed');
     axios.post(`/api/mppName/${this.state.value}`).then(res => {
+
       window.location = '/mpp/' + this.state.value;
       this.loading = false;
     });
@@ -25,7 +25,7 @@ class SearchBar extends Component {
     if (event.key === 'Enter') {
       event.preventDefault();
       axios.post(`/api/mppName/${this.state.value}`).then(res => {
-        //console.log(res.data)
+
         window.location = '/mpp/' + this.state.value;
       });
     }

@@ -8,6 +8,7 @@ import EventFeed from './dashComponents/EventFeed';
 import NewsFeed from './dashComponents/NewsFeed';
 import SpeechFeed from './dashComponents/SpeechFeed';
 import VotingRecords from './dashComponents/VotingRecords';
+import FollowButton from './dashComponents/FollowButton';
 import demoList from './list/mppSocial';
 import Loader from './Loader';
 import { Animated } from 'react-animated-css';
@@ -35,6 +36,7 @@ const styles = {
 export default class SelectedMPP extends Component {
   state = {
     mppLockup: this.props.match.params.mppName,
+    lastName: '',
     name: '',
     position: [],
     url: '',
@@ -49,18 +51,20 @@ export default class SelectedMPP extends Component {
     telephone: '',
     twitter: '',
     facebook: '',
+    userId: '',
+    followingId: '',
     isLoading: true
   };
 
-  // let url = window.location.href;
   mppSearch() {
     axios
       .get(`/api/mppName/${this.state.mppLockup}`, {
         name: name
       })
       .then(res => {
-        //console.log('ths is the res from get ', res.data[0].addressEmailId.Telephone),
         this.setState({
+          followingId: res.data[0]._id,
+          lastName: res.data[0].lastName,
           name: res.data[0].name,
           position: res.data[0].careerDetails[0].positions,
           url: res.data[0].url,
@@ -95,11 +99,21 @@ export default class SelectedMPP extends Component {
     });
   }
   //
+  getCurrentUser = () => {
+    axios.get('/api/currentUser')
+      .then(res => {
+        this.setState({ userId: res.data._id })
+      })
+      .catch(err => console.log(err));
+  };
+  //
   componentDidMount() {
+    this.getCurrentUser();
     this.mppSearch();
     setTimeout(() => {
       this.getTwitter();
       this.getFacebook();
+
     }, 10000);
     setTimeout(() => this.setState({ isLoading: false }), 3000);
   }
@@ -120,7 +134,10 @@ export default class SelectedMPP extends Component {
       telephone,
       twitter,
       facebook,
-      mppLockup
+      mppLockup,
+      userId,
+      followingId,
+      lastName
     } = this.state;
 
     return (
@@ -130,6 +147,8 @@ export default class SelectedMPP extends Component {
         isVisible={true}
       >
         <MppInfo
+          // followingId={followingId}
+          lastName={lastName}
           name={name}
           position={position}
           url={url}
@@ -138,13 +157,15 @@ export default class SelectedMPP extends Component {
           party={party}
           parliamentNumber={parliamentNumber}
           telephone={telephone}
+          // userId={userId}
         />
         <div className="outterDiv center w-80" style={styles.layout}>
           <div className="innerDiv-left">
             {/* <SocialFeed twitter={twitter} facebook={facebook} /> */}
+            <FollowButton userId={userId} followingId={followingId}/>
             <TwitterFeed twitter={twitter} />
             <FacebookFeed facebook={facebook} />
-            {/* <EventFeed /> */}
+            <EventFeed  userId={userId} followingId={followingId}/>
             {/* <NewsFeed customStyle={styles.rightA} /> */}
           </div>
           <div className="innerDiv-right w-80 ">

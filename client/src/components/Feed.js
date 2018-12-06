@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,6 +12,7 @@ import API from '../utils/API';
 import TwitterFeed from './TwitterFeed';
 import FacebookFeed from './FacebookFeed';
 import BillsFeed from './dashComponents/BillsFeed';
+// end of inports
 
 function TabContainer({ children, dir }) {
   return (
@@ -29,14 +31,14 @@ const styles = theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     // width: 500,
-    flexGrow: 1, // this will center 
+    flexGrow: 1 // this will center
   }
 });
 
 class FullWidthTabs extends React.Component {
   state = {
     value: 0,
-    value: '',
+    // value: '',
     recentBill: []
   };
 
@@ -50,6 +52,10 @@ class FullWidthTabs extends React.Component {
 
   componentDidMount() {
     this.loadRecentBills();
+  }
+
+  componentDidUpdate() {
+    this.swipeableActions.updateHeight();
   }
 
   handleChange = (event, value) => {
@@ -83,20 +89,63 @@ class FullWidthTabs extends React.Component {
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={this.state.value}
           onChangeIndex={this.handleChangeIndex}
+          action={actions => {
+            this.swipeableActions = actions;
+          }}
+          animateHeight
+          style={{
+            maxHeight: '78vh'
+          }}
         >
-          <TabContainer dir={theme.direction}>
-            <div className="billsToday" >
+          <TabContainer
+            style={{
+              overflowY: 'scroll'
+              // maxHeight: '70vh'
+            }}
+            dir={theme.direction}
+          >
+            <div className="billsToday">
               <h2>Recent Bills</h2>
               <BillsFeed recentBill={this.state.recentBill} />
             </div>
           </TabContainer>
-          <TabContainer dir={theme.direction}>
-          <TwitterFeed className={this.state.TwitterClass} />
+          <TabContainer
+            style={{
+              overflowY: 'scroll',
+              maxHeight: '70vh'
+            }}
+            dir={theme.direction}
+            className="test"
+          >
+            <TwitterFeed />
           </TabContainer>
-          <TabContainer dir={theme.direction}>
-          <FacebookFeed className={this.state.FacebookClass} />
+          <TabContainer
+            style={{
+              overflowY: 'scroll',
+              maxHeight: '70vh'
+            }}
+            dir={theme.direction}
+          >
+            <FacebookFeed />
           </TabContainer>
         </SwipeableViews>
+        <div
+          className="postalCodeSearch"
+          style={{
+            width: '100%',
+            marginTop: '0px',
+            height: 'auto',
+            backgroundColor: '#F4F4F4'
+          }}
+        >
+          <h3>Not Sure who your MPP is?</h3>
+          <a
+            href="https://voterinformationservice.elections.on.ca/en/election/search?mode=postalCode"
+            target="blank"
+          >
+            Click here to search by postal code
+          </a>
+        </div>
       </div>
     );
   }

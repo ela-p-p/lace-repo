@@ -23,7 +23,6 @@ class SpeechFeed extends Component {
         name: name
       })
       .then(res => {
-       
         this.setState({ hansard: res.data });
       })
       .catch(err => console.log(err));
@@ -37,23 +36,25 @@ class SpeechFeed extends Component {
     const { hansard } = this.state;
     return (
       <article
-        style={styles.rightA}
-        className="center br3 hidden ba b--black-10 mv4 w-90 vStyle"
+        // style={styles.rightA}
+        className="center br3 hidden  b--black-10 mv4 w-100 pa3 "
       >
-        <h1 className="f4 bg-near-white br3 br--top black-60 mv0 pv2 ph3">
-          Speech Feed
-        </h1>
-        <div className="pa3 bt b--black-10">
-          <ul>
-            {hansard.map((element, index) => {
-              return (
-                <li key={index} className="f6 bb b--black pa1">
+        {/* <div className="pa3 bt b--black-10"> */}
+        <ul>
+          {hansard.map((element, index) => {
+            return (
+              <div key={index}>
+                <li
+                  className="f6 link dim br3 ph3 pv2 mb2 dib white bg-mid-gray"
+                >
                   {element.speech}
                 </li>
-              );
-            })}
-          </ul>
-        </div>
+                <br />
+              </div>
+            );
+          })}
+        </ul>
+        {/* </div> */}
       </article>
     );
   }

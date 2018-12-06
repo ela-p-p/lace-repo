@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SearchBar from './SearchBar';
+// import { Link } from 'react-router-dom';
+// import SearchBar from './SearchBar';
 import { connect } from 'react-redux';
 // import * as actions from '../actions';
 

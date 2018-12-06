@@ -4,7 +4,7 @@ const axios = require('axios');
 const MPPurl = require('../models/MPPurl');
 const CronJob = require('cron').CronJob;
 
-const mppUrlScrape = new CronJob('* 10 * * *', () => {
+const mppUrlScraper = new CronJob('* * 23 1 1 *', () => {
   const d = new Date();
   console.log('First:', d);
   const resultsArray = [];
@@ -27,6 +27,7 @@ const mppUrlScrape = new CronJob('* 10 * * *', () => {
     });
   });
 });
-// mppUrlScrape.start();
+mppUrlScraper.start();
+// mppUrlScraper.stop();
 
-module.exports = mppUrlScrape;
+module.exports = mppUrlScraper;

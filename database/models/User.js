@@ -4,9 +4,9 @@ const { Schema } = mongoose;
 
 const UserSchema = new Schema({
   googleId: String,
+  followingId: [{ type: Schema.Types.ObjectId, ref: 'eachmpps' }],
 });
 
-// const User = mongoose.model('User', UserSchema);
-mongoose.model('users', UserSchema);
+const User = mongoose.model('users', UserSchema);
 
-// module.exports = User;
+module.exports = User;
