@@ -35,8 +35,9 @@ const styles = theme => ({
     flexWrap: 'wrap'
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
+    padding: "20px",
     width: 200
   },
   dense: {
@@ -52,8 +53,8 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap'
   },
-  eventList: { width: '55rem' },
-  eventForm: {}
+  eventList: { width: '40rem', padding:"10px" },
+  eventForm: {width: '40rem'}
 });
 
 class EventFeed extends Component {
@@ -114,9 +115,17 @@ class EventFeed extends Component {
     document.getElementById('datetime-local').value = '';
   };
 
+  getCurrentUser = () => {
+    axios.get('/api/currentUser')
+      .then(res => {
+        this.setState({ userId: res.data._id })
+      })
+      .catch(err => console.log(err));
+  };
+
   //
   componentDidMount() {
-    // this.getCurrentUser();
+    this.getCurrentUser();
     this.displayEvents();
   }
 
@@ -128,7 +137,7 @@ class EventFeed extends Component {
         <Paper className={classes.root} elevation={1}>
           <React.Fragment>
             <CssBaseline />
-            <main>
+            <main className={classes.eventList}>
               <form className={classes.container} noValidate autoComplete="off">
                 <TextField
                   id="standard-name-eventName"
@@ -152,6 +161,7 @@ class EventFeed extends Component {
                   className={classes.textField}
                   value={this.state.eventLocation}
                   onChange={this.handleChange('eventLocation')}
+                  margin="normal"
                 />
                 <TextField
                   id="datetime-local"
@@ -164,6 +174,7 @@ class EventFeed extends Component {
                   InputLabelProps={{
                     shrink: true
                   }}
+                  margin="normal"
                 />
               </form>
               <Button
