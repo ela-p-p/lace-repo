@@ -126,7 +126,7 @@ class PaperSheet extends Component {
     }
 
     const {
-      // name,
+      name,
       position,
       url,
       photo,

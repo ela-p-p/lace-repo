@@ -120,18 +120,29 @@ const Mppinfo = ({
           </ExpansionPanel>
         </div>
         <hr />
-        <Typography component="p">Career: {parliamentNumber}</Typography>
-        <Typography component="ul">
-          Position(s):
+        <Typography component="p">
+          <strong>Career:</strong> {parliamentNumber}
+        </Typography>
+        <Typography component="ul" style={{ listStyleType: 'none' }}>
+          <strong>Position(s):</strong>
           {/* <ul> */}
           {position.map((jobs, i) => (
             <li key={i}>{jobs}</li>
           ))}
           {/* </ul> */}
         </Typography>
-        <Typography component="p">Party: {party}</Typography>
-        <Typography component="p">{telephone}</Typography>
-        <Typography component="p">{currentRiding}</Typography>
+        <Typography component="p">
+          <strong>Party: </strong>
+          {party}
+        </Typography>
+        <Typography component="p">
+          <strong>Number: </strong>
+          {telephone}
+        </Typography>
+        <Typography component="p">
+          <strong>Riding: </strong>
+          {currentRiding}
+        </Typography>
         {/*  */}
         <FollowButton userId={userId} followingId={followingId} />
       </Paper>

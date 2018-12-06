@@ -7,7 +7,7 @@ const billVotes = require('../database/models/billVotes');
 const bills = require('../database/models/Bills');
 const requireLogin = require('../middlewares/requireLogin');
 const users = require('../database/models/User');
-const events = require('../database/models/Events')
+const events = require('../database/models/Events');
 
 module.exports = app => {
   const billsScraper = require('../database/scraping/Bills');
@@ -31,7 +31,7 @@ module.exports = app => {
   app.get('/api/events/', requireLogin, (req, res) => {
     events
       .find({})
-      .populate(userId)
+      // .populate(userId)
       .then(event => {
         res.json(event);
       })
@@ -100,36 +100,50 @@ module.exports = app => {
   //get user info from window
   app.get('/api/currentUser', (req, res) => {
     res.send(req.user);
-  })
+  });
   app.get('/mpp/:name', (req, res) => {
     res.send(req.user);
-  })
+  });
   //pass userid and followingId to update Userdb with reference to MPP following
   app.put('/api/following/:userId&:followingId', (req, res) => {
-    users.findById(req.params.userId).where({ followingId: req.params.followingId })
+    users
+      .findById(req.params.userId)
+      .where({ followingId: req.params.followingId })
       .then(data => {
         if (!data) {
-          users.updateOne({ _id: req.params.userId }, { $push: { followingId: req.params.followingId } }, { new: true })
-            .then(added => { console.log('added ') })
+          users
+            .updateOne(
+              { _id: req.params.userId },
+              { $push: { followingId: req.params.followingId } },
+              { new: true }
+            )
+            .then(added => {
+              console.log('added ');
+            });
+        } else {
+          console.log('already following');
         }
-        else { console.log('already following') }
       })
       .catch(err => {
         console.error(err);
         res.status(422).json(err);
       });
-  })
+  });
   // remove MPP/followingId from User
   app.put('/api/unfollow/:userId&:followingId', (req, res) => {
-    users.updateOne({ _id: req.params.userId }, { $pull: { followingId: req.params.followingId } })
+    users
+      .updateOne(
+        { _id: req.params.userId },
+        { $pull: { followingId: req.params.followingId } }
+      )
       .then(unfollow => {
-        console.log('unfollowing!')
+        console.log('unfollowing!');
       })
       .catch(err => {
         console.error(err);
         res.status(422).json(err);
       });
-  })
+  });
   // route to retrieve MPP's for User pager
   app.get('/api/userMpps', (req, res) => {
     users
@@ -149,8 +163,6 @@ module.exports = app => {
       .create(req.body)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-  })
+  });
   // get events to display to page
-  
-
-}
+};
