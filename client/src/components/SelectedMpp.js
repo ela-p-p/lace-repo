@@ -99,14 +99,14 @@ class PaperSheet extends Component {
     });
   };
 
-  getCurrentUser = () => {
-    axios
-      .get('/api/currentUser')
-      .then(res => {
-        this.setState({ userId: res.data._id });
-      })
-      .catch(err => console.log(err));
-  };
+  // getCurrentUser = () => {
+  //   axios
+  //     .get('/api/currentUser')
+  //     .then(res => {
+  //       this.setState({ userId: res.data._id });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
   // -- end of helpers
   // life cycle
   componentDidMount() {

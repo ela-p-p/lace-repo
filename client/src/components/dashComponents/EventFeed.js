@@ -51,7 +51,7 @@ const styles = theme => ({
     display: 'flex',
     flexWrap: 'wrap'
   },
-  eventList: { width: '60rem' },
+  eventList: { width: '55rem' },
   eventForm: {}
 });
 
@@ -69,15 +69,15 @@ class EventFeed extends Component {
     };
   }
 
-  getCurrentUser = () => {
-    axios
-      .get('/api/currentUser')
-      .then(res => {
-        // console.log(res.data)
-        this.setState({ userId: res.data._id });
-      })
-      .catch(err => console.log(err));
-  };
+  // getCurrentUser = () => {
+  //   axios
+  //     .get('/api/currentUser')
+  //     .then(res => {
+  //       // console.log(res.data)
+  //       this.setState({ userId: res.data._id });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
   handleChange = name => event => {
     this.setState({
@@ -205,7 +205,7 @@ class EventFeed extends Component {
 
                   <Typography component="p" className="pa2">
                     <strong>Date: </strong>
-                    {event.eventDate}
+                    {event.eventDate.substring(0, 10)}
                   </Typography>
 
                   <Typography component="p" className="pa2">
