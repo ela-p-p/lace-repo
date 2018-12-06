@@ -26,7 +26,7 @@ const defaultFb = 'https://www.facebook.com/CBCPolitics/';
 
 const handleUrlCheck = link => {
   if (window.location.pathname === '/landing') {
-    console.log('flat link ', defaultFb);
+    // console.log('flat link ', defaultFb);
     return (
       <div
         className="fb-page"
@@ -44,8 +44,8 @@ const handleUrlCheck = link => {
       </div>
     );
   } else {
-    console.log('super link ', link);
-    console.log(typeof link);
+    // console.log('super link ', link);
+    // console.log(typeof link);
     return (
       <div
         className="fb-page"

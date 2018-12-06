@@ -113,7 +113,6 @@ export default class SelectedMPP extends Component {
     setTimeout(() => {
       this.getTwitter();
       this.getFacebook();
-
     }, 10000);
     setTimeout(() => this.setState({ isLoading: false }), 3000);
   }
@@ -162,14 +161,17 @@ export default class SelectedMPP extends Component {
         <div className="outterDiv center w-80" style={styles.layout}>
           <div className="innerDiv-left">
             {/* <SocialFeed twitter={twitter} facebook={facebook} /> */}
-            <FollowButton userId={userId} followingId={followingId}/>
+            <FollowButton userId={userId} followingId={followingId} />
             <TwitterFeed twitter={twitter} />
             <FacebookFeed facebook={facebook} />
-            <EventFeed  userId={userId} followingId={followingId}/>
+            <EventFeed userId={userId} followingId={followingId} />
             {/* <NewsFeed customStyle={styles.rightA} /> */}
           </div>
           <div className="innerDiv-right w-80 ">
-            <VotingRecords votingRecords={VotingRecords} customStyle={styles.rightA} />
+            <VotingRecords
+              votingRecords={VotingRecords}
+              customStyle={styles.rightA}
+            />
             <SpeechFeed mppLockup={mppLockup} customStyle={styles.rightA} />
           </div>
         </div>

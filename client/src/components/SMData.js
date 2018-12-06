@@ -112,7 +112,8 @@ class FullWidthTabs extends React.Component {
 FullWidthTabs.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  mppLockup: PropTypes.string.isRequired
+  mppLockup: PropTypes.string.isRequired,
+  // userId: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(FullWidthTabs);
