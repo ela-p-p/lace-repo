@@ -1,28 +1,42 @@
 /* eslint-disable */
 import React from 'react';
-// import './styling/twitter.css';
-// import './TwitterStyle.css'
+import { Timeline } from 'react-twitter-widgets';
+// import { TwitterTimelineEmbed } from 'react-twitter-embed';
+
+
 const TwitterFeed = props => (
-  <div
-    // className={props.className}
-    style={{
-      height: '75vh',
-      overflow: 'scroll'
-    }}
-  >
-    <a
-      className="twitter-timeline"
-      // data-height="1000"
-      href="https://twitter.com/ontariopolitix?lang=en"
-    >
-      Tweets by TwitterDev
-    </a>{' '}
-    <script
-      async
-      src="https://platform.twitter.com/widgets.js"
-      charSet="utf-8"
-    />
-  </div>
+ <Timeline
+ dataSource={{
+   sourceType: 'profile',
+   screenName: 'twitterdev'
+ }}
+ options={{
+   username: 'TwitterDev',
+   height: '400'
+ }}
+ onLoad={() => console.log('Timeline is loaded!')}
+ />
+
+  // <div
+  //   // className={props.className}
+  //   style={{
+  //     height: '75vh',
+  //     overflow: 'scroll'
+  //   }}
+  // >
+  //   <a
+  //     className="twitter-timeline"
+  //     // data-height="1000"
+  //     href="https://twitter.com/ontariopolitix?lang=en"
+  //   >
+  //     Tweets by TwitterDev
+  //   </a>{' '}
+  //   <script
+  //     async
+  //     src="https://platform.twitter.com/widgets.js"
+  //     charSet="utf-8"
+  //   />
+  // </div>
 );
 
 export default TwitterFeed;

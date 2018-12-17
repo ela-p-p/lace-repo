@@ -20,7 +20,8 @@ const styles = theme => ({
     width: '100%'
   },
   palette: {
-    backgroundColor: '#009688'
+    // backgroundColor: '#009688'
+    backgroundColor: '#65737e'
   },
   grow: {
     flexGrow: 3

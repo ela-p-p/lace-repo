@@ -15,6 +15,7 @@ module.exports = app => {
   const mppUrlScraper = require('../database/scraping/MPPurls');
   const hansardScraper = require('../database/scraping/Hansard');
   const populateCreate = require('../database/scraping/populateDB');
+  
   // //this finds MPP from search bar, direct link
   app.use('/api/mppName/:name', requireLogin, (req, res) => {
     eachMPP
@@ -99,6 +100,7 @@ module.exports = app => {
   });
   //get user info from window
   app.get('/api/currentUser', (req, res) => {
+    // console.log(req.user._id)
     res.send(req.user);
   });
   app.get('/mpp/:name', (req, res) => {
