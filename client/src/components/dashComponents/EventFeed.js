@@ -126,7 +126,7 @@ class EventFeed extends Component {
 
   //
   componentDidMount() {
-    // this.getCurrentUser();
+    this.getCurrentUser();
     this.displayEvents();
   }
 
