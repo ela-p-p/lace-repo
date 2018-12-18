@@ -2,19 +2,19 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // components
-import MppInfo from './dashComponents/Mppinfo';
-import SocialFeed from './dashComponents/SocialFeed';
-import EventFeed from './dashComponents/EventFeed';
-import NewsFeed from './dashComponents/NewsFeed';
-import SpeechFeed from './dashComponents/SpeechFeed';
-import VotingRecords from './dashComponents/VotingRecords';
-import FollowButton from './dashComponents/FollowButton';
-import demoList from './list/mppSocial';
-import Loader from './Loader';
+import MppInfo from '../client/src/components/dashComponents/Mppinfo';
+import SocialFeed from '../client/src/components/dashComponents/SocialFeed';
+import EventFeed from '../client/src/components/dashComponents/EventFeed';
+import NewsFeed from '../client/src/components/dashComponents/NewsFeed';
+import SpeechFeed from '../client/src/components/dashComponents/SpeechFeed';
+import VotingRecords from '../client/src/components/dashComponents/VotingRecords';
+import FollowButton from '../client/src/components/dashComponents/FollowButton';
+import demoList from '../client/src/components/list/mppSocial';
+import Loader from '../client/src/components/Loader';
 import { Animated } from 'react-animated-css';
 
-import TwitterFeed from './dashComponents/TwitterFeed';
-import FacebookFeed from './dashComponents/FacebookFeed';
+import TwitterFeed from '../client/src/components/dashComponents/TwitterFeed';
+import FacebookFeed from '../client/src/components/dashComponents/FacebookFeed';
 //
 // const NewsAPI = require('newsapi');
 
