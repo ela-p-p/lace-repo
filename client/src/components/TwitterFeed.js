@@ -1,43 +1,47 @@
 /* eslint-disable */
-import React from 'react';
+import React, { Component } from 'react';
 import { Timeline } from 'react-twitter-widgets';
 // import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
+const handleUser = link => {
+  console.log('ok ', link);
+  if (window.location.pathname === '/landing') {
+    return (
+      <Timeline
+        dataSource={{
+          sourceType: 'profile',
+          screenName: 'CBCNews'
+        }}
+        options={{
+          username: 'CBCNews',
+          height: '600'
+        }}
+        onLoad={() => console.log('Timeline is loaded!')}
+      />
+    );
+  } else {
+    return (
+      <Timeline
+        dataSource={{
+          sourceType: 'profile',
+          screenName: `${link}`
+        }}
+        options={{
+          username: `${link}`,
+          height: '600'
+        }}
+        onLoad={() => console.log('Timeline is loaded!')}
+      />
+    );
+  }
+};
 
-const TwitterFeed = props => (
- <Timeline
- dataSource={{
-   sourceType: 'profile',
-   screenName: 'twitterdev'
- }}
- options={{
-   username: 'TwitterDev',
-   height: '400'
- }}
- onLoad={() => console.log('Timeline is loaded!')}
- />
-
-  // <div
-  //   // className={props.className}
-  //   style={{
-  //     height: '75vh',
-  //     overflow: 'scroll'
-  //   }}
-  // >
-  //   <a
-  //     className="twitter-timeline"
-  //     // data-height="1000"
-  //     href="https://twitter.com/ontariopolitix?lang=en"
-  //   >
-  //     Tweets by TwitterDev
-  //   </a>{' '}
-  //   <script
-  //     async
-  //     src="https://platform.twitter.com/widgets.js"
-  //     charSet="utf-8"
-  //   />
-  // </div>
-);
+class TwitterFeed extends Component {
+  render() {
+    const { twitter } = this.props;
+    return handleUser(twitter);
+  }
+}
 
 export default TwitterFeed;
 
