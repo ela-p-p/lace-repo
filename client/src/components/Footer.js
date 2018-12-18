@@ -6,7 +6,8 @@ const styles = {
   footerStyle: {
     textAlign: 'center',
     width: '100%',
-    backgroundColor: '#009688',
+    // backgroundColor: '#009688',
+    backgroundColor: '#65737e',
     height: '40px',
     display: 'flex',
     justifyContent: 'center',

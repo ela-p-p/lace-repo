@@ -2,29 +2,29 @@
 import React, { Component } from 'react';
 // import SearchBar from './SearchBar';
 // import Footer from './Footer';
-import TwitterFeed from './TwitterFeed';
-import FacebookFeed from './FacebookFeed';
+import TwitterFeed from '../client/src/components/TwitterFeed';
+import FacebookFeed from '../client/src/components/FacebookFeed';
 import './styling/Landing.css';
-import BillsFeed from './dashComponents/BillsFeed';
-import API from '../utils/API';
+import BillsFeed from '../client/src/components/dashComponents/BillsFeed';
+import API from '../client/src/utils/API';
 import { Animated } from 'react-animated-css';
 
-window.twttr = (function(d, s, id) {
-  var js,
-    fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = 'https://platform.twitter.com/widgets.js';
-  fjs.parentNode.insertBefore(js, fjs);
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
+// window.twttr = (function(d, s, id) {
+//   var js,
+//     fjs = d.getElementsByTagName(s)[0],
+//     t = window.twttr || {};
+//   if (d.getElementById(id)) return t;
+//   js = d.createElement(s);
+//   js.id = id;
+//   js.src = 'https://platform.twitter.com/widgets.js';
+//   fjs.parentNode.insertBefore(js, fjs);
+//   t._e = [];
+//   t.ready = function(f) {
+//     t._e.push(f);
+//   };
 
-  return t;
-})(document, 'script', 'twitter-wjs');
+//   return t;
+// })(document, 'script', 'twitter-wjs');
 
 const style = {
   panelLayout: {
